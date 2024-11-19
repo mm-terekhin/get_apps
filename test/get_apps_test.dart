@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get_apps/get_apps.dart';
+import 'package:get_apps_flutter/get_apps.dart';
 
 void main() {
   const getApps = GetApps();
