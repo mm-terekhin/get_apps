@@ -73,7 +73,8 @@ class _MyAppState extends State<MyApp> {
                     await getApps.openMessengerApp(
                       type: MessengerType.telegram,
                       arg: 'test',
-                    );},
+                    );
+                  },
                   child: const Text(
                     'Open telegram',
                   ),

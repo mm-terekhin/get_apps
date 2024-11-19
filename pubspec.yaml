@@ -26,3 +26,6 @@ flutter:
         pluginClass: GetAppsPlugin
       ios:
         pluginClass: GetAppsPlugin
+
+  assets:
+    - assets/

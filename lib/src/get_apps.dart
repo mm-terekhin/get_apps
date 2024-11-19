@@ -1,5 +1,7 @@
 import 'package:flutter/services.dart';
 import 'entities/entities.dart';
+import 'dart:typed_data';
+import 'dart:convert';
 
 class GetApps {
   const GetApps();
@@ -9,9 +11,8 @@ class GetApps {
   Future<List<AppData>> getInstalledMessengers() async {
     final appsData = <AppData>[];
 
-    final /*List<dynamic>?*/ apps =
+    final List<dynamic>? apps =
         await _getAppsChannel.invokeMethod('getInstalledMessengers');
-
 
     if (apps != null) {
       for (final app in apps) {
