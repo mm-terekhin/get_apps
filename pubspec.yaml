@@ -1,6 +1,6 @@
 name: get_apps
 description: A plugin that allows you to get a list of messengers, emails or run any other application
-version: 0.0.1
+version: 0.0.4
 homepage: https://github.com/mm-terekhin/get_apps
 repository: https://github.com/mm-terekhin/get_apps
 
@@ -26,6 +26,3 @@ flutter:
         pluginClass: GetAppsPlugin
       ios:
         pluginClass: GetAppsPlugin
-
-  assets:
-    - assets/
