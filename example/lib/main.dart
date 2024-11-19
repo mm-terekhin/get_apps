@@ -40,13 +40,13 @@ class _MyAppState extends State<MyApp> {
 
                     telegram = appsList
                         .where(
-                          (element) => element.type == 'telegram',
+                          (element) => element.type.isTelegram,
                         )
                         .firstOrNull;
 
                     whatsApp = appsList
                         .where(
-                          (element) => element.type == 'whatsApp',
+                          (element) => element.type.isWhatsApp,
                         )
                         .firstOrNull;
                   });
