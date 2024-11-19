@@ -1,29 +1,37 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_apps/get_apps.dart';
-import 'package:get_apps/get_apps_platform_interface.dart';
-import 'package:get_apps/get_apps_method_channel.dart';
-import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-
-class MockGetAppsPlatform
-    with MockPlatformInterfaceMixin
-    implements GetAppsPlatform {
-
-  @override
-  Future<String?> getPlatformVersion() => Future.value('42');
-}
 
 void main() {
-  final GetAppsPlatform initialPlatform = GetAppsPlatform.instance;
+  const getApps = GetApps();
+  TestWidgetsFlutterBinding.ensureInitialized();
+  const channel = MethodChannel('mm_terekhin/get_apps_channel');
+  final log = <MethodCall>[];
 
-  test('$MethodChannelGetApps is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelGetApps>());
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+      .setMockMethodCallHandler(channel, (MethodCall methodCall) async {
+    log.add(methodCall);
+    if (methodCall.method == 'openMailApp') {
+      return true;
+    }
+    return null;
   });
 
-  test('getPlatformVersion', () async {
-    GetApps getAppsPlugin = GetApps();
-    MockGetAppsPlatform fakePlatform = MockGetAppsPlatform();
-    GetAppsPlatform.instance = fakePlatform;
+  tearDown(() {
+    log.clear();
+  });
 
-    expect(await getAppsPlugin.getPlatformVersion(), '42');
+  group('messengers', () {
+    test('should get installed messengers', () async {
+      final result = await getApps.getInstalledMessengers();
+      expect(result, []);
+    });
+
+    test('should open messengers', () async {
+      await getApps.openMessengerApp(
+        type: MessengerType.telegram,
+        arg: 'test',
+      );
+    });
   });
 }
