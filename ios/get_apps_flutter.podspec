@@ -3,7 +3,7 @@
 # Run `pod lib lint get_apps.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'get_apps'
+  s.name             = 'get_apps_flutter'
   s.version          = '0.0.1'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
